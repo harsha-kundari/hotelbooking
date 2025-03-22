@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .login-form-container, .faculty-dashboard-container, .details-container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            background-color: #2e8b57;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #238d4e;
+        }
+
+        .details-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details-container p {
+            font-size: 1.1em;
+        }
+
+        .details-container button {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .booking-details {
+            list-style: none;
+            padding: 0;
+        }
+
+        .booking-details li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Faculty Login Page -->
+    <div id="facultyLoginPage" class="login-form-container">
+        <h2>Faculty Login</h2>
+        <form id="facultyLoginForm">
+            <div class="form-group">
+                <label for="facultyUsername">Username</label>
+                <input type="text" id="facultyUsername" name="facultyUsername" required placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="facultyPassword">Password</label>
+                <input type="password" id="facultyPassword" name="facultyPassword" required placeholder="Enter your password">
+            </div>
+            <button type="button" class="submit-btn" onclick="facultyLogin()">Login</button>
+        </form>
+    </div>
+
+    <!-- Faculty Dashboard / Booking Management -->
+    <div id="facultyDashboard" class="faculty-dashboard-container" style="display: none;">
+        <h2>Welcome to the Faculty Dashboard</h2>
+        <p>As a faculty member, you can manage bookings or other tasks.</p>
+        <button class="submit-btn" onclick="viewBookings()">View Bookings</button>
+        <button class="submit-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Display Bookings (example) -->
+    <div id="bookingsPage" class="details-container" style="display: none;">
+        <h3>All Bookings</h3>
+        <ul id="bookingList" class="booking-details">
+            <!-- Booking details will be injected here -->
+        </ul>
+    </div>
+
+    <script>
+        // Sample faculty login credentials
+        const validFacultyUsername = 'faculty';
+        const validFacultyPassword = 'faculty123';
+
+        // Faculty Login function
+        function facultyLogin() {
+            const username = document.getElementById('facultyUsername').value;
+            const password = document.getElementById('facultyPassword').value;
+
+            if (username === validFacultyUsername && password === validFacultyPassword) {
+                // Hide the faculty login page and show the faculty dashboard
+                document.getElementById('facultyLoginPage').style.display = 'none';
+                document.getElementById('facultyDashboard').style.display = 'block';
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+
+        // Show all bookings or a booking management page (example functionality)
+        function viewBookings() {
+            document.getElementById('facultyDashboard').style.display = 'none';
+            document.getElementById('bookingsPage').style.display = 'block';
+
+            // Retrieve booking data from localStorage
+            const bookingData = JSON.parse(localStorage.getItem('bookingData'));
+            
+            if (bookingData) {
+                // Create a list item for each booking and display them
+                const bookingList = document.getElementById('bookingList');
+                const bookingItem = document.createElement('li');
+                bookingItem.innerHTML = `
+                    <strong>Name:</strong> ${bookingData.name} <br>
+                    <strong>Email:</strong> ${bookingData.email} <br>
+                    <strong>Phone:</strong> ${bookingData.phone} <br>
+                    <strong>Room Type:</strong> ${bookingData.roomType} <br>
+                    <strong>Check-in Date:</strong> ${bookingData.checkin} <br>
+                    <strong>Check-out Date:</strong> ${bookingData.checkout} <br>
+                    <strong>Additional Requests:</strong> ${bookingData.requests}
+                `;
+                bookingList.appendChild(bookingItem);
+            } else {
+                // If no booking data is found, display a message
+                const bookingList = document.getElementById('bookingList');
+                bookingList.innerHTML = "<p>No bookings available yet.</p>";
+            }
+        }
+
+        // Logout function to return to the login page
+        function logout() {
+            document.getElementById('facultyDashboard').style.display = 'none';
+            document.getElementById('facultyLoginPage').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

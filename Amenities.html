@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Hotel Facilities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        .amenities-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px;
+        }
+        .amenity {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+            padding: 20px;
+        }
+        .amenity img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        .amenity-name {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .amenity-description {
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hotel Amenities</h1>
+    </header>
+
+    <div class="amenities-container">
+        <div class="amenity">
+            <img src="https://3.imimg.com/data3/RI/MK/MY-15308811/wifi-internet-500x500.png" alt="WiFi">
+            <div class="amenity-name">Free WiFi</div>
+            <p class="amenity-description">Stay connected with high-speed wireless internet throughout the hotel.</p>
+        </div>
+
+        <div class="amenity">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Backyardpool.jpg/1200px-Backyardpool.jpg" alt="Swimming Pool" >
+            <div class="amenity-name">Swimming Pool</div>
+            <p class="amenity-description">Relax and swim in our outdoor pool, open year-round.</p>
+        </div>
+
+        <div class="amenity">
+            <img src="https://plus.unsplash.com/premium_photo-1661920538067-c48451160c72?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zml0bmVzcyUyMGNlbnRlcnxlbnwwfHwwfHx8MA%3D%3D " alt="Gym" width ="200">
+            <div class="amenity-name">Fitness Center</div>
+            <p class="amenity-description">Our state-of-the-art gym is available for guests looking to stay active.</p>
+        </div>
+
+        <div class="amenity">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/56/71/59/atmosphere.jpg?w=600&h=-1&s=1" alt="Restaurant">
+            <div class="amenity-name">Restaurant</div>
+            <p class="amenity-description">Enjoy a fine dining experience with locally inspired dishes.</p>
+        </div>
+
+        
+        <div class="amenity">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO00WcF5q9oSktvNX7bUmiHPXvpW2LMAVEHQ&s" alt="Parking">
+            <div class="amenity-name">Free Parking</div>
+            <p class="amenity-description">We offer free parking for all our guests, ensuring your convenience.</p>
+        </div>
+    </div>
+
+</body>
+</html>

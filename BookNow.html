@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <style>
+        /* Same styling as previously */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .booking-form-container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            background-color: #2e8b57;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #238d4e;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hotel Booking</h1>
+        <p>Book your stay at our hotel now!</p>
+    </header>
+
+    <div class="booking-form-container">
+        <h2>Reserve Your Room</h2>
+        <form id="bookingForm">
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+            </div>
+
+            <!-- Room Type Selection -->
+            <div class="form-group">
+                <label for="room-type">Room Type</label>
+                <select id="room-type" name="room-type" required>
+                    <option value="deluxe">Deluxe Suite</option>
+                    <option value="standard">Standard Room</option>
+                    <option value="penthouse">Penthouse</option>
+                </select>
+            </div>
+
+            <!-- Check-in and Check-out Date -->
+            <div class="form-group">
+                <label for="checkin">Check-in Date</label>
+                <input type="date" id="checkin" name="checkin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="checkout">Check-out Date</label>
+                <input type="date" id="checkout" name="checkout" required>
+            </div>
+
+            <!-- Additional Requests -->
+            <div class="form-group">
+                <label for="requests">Additional Requests</label>
+                <textarea id="requests" name="requests" placeholder="Enter any additional requests or preferences"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" class="submit-btn" onclick="submitForm()">Book Now</button>
+        </form>
+    </div>
+
+    <script>
+        // Hotel Booking form submission
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const roomType = document.getElementById('room-type').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const requests = document.getElementById('requests').value;
+
+            // Store the data in localStorage
+            const bookingData = {
+                name,
+                email,
+                phone,
+                roomType,
+                checkin,
+                checkout,
+                requests
+            };
+
+            // Save to localStorage (convert to JSON format)
+            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+            // Confirmation message
+            alert("Your booking has been successfully made!");
+            // Optionally, redirect to a confirmation page or clear the form.
+            document.getElementById('bookingForm').reset();
+        }
+    </script>
+
+</body>
+</html>
