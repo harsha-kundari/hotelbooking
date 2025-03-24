@@ -3,156 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Booking</title>
+    <title>Hotel Booking Form</title>
     <style>
-        /* Same styling as previously */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em;
-        }
-
-        .booking-form-container {
-            width: 50%;
-            margin: 50px auto;
-            background-color: white;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .booking-form {
+            background: #fff;
+            padding: 20px;
+            width: 350px;
             border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
         }
 
         label {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 5px;
+            font-weight: bold;
             display: block;
+            margin-top: 10px;
         }
 
-        input, select, textarea {
+        input, textarea, select {
             width: 100%;
-            padding: 10px;
-            font-size: 1em;
+            padding: 8px;
+            margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        .submit-btn {
-            background-color: #2e8b57;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
+        button {
             width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
-        .submit-btn:hover {
-            background-color: #238d4e;
+        button:hover {
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Hotel Booking</h1>
-        <p>Book your stay at our hotel now!</p>
-    </header>
+    <div class="booking-form">
+        <h2>Hotel Booking</h2>
+        <form onsubmit="return validateBookingForm()">
+            <label for="fullName">Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
 
-    <div class="booking-form-container">
-        <h2>Reserve Your Room</h2>
-        <form id="bookingForm">
-            <!-- Name Field -->
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required placeholder="Enter your full name">
-            </div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
 
-            <!-- Email Field -->
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email address">
-            </div>
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
 
-            <!-- Phone Field -->
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-            </div>
+            <label for="roomType">Room Type:</label>
+            <select id="roomType" name="roomType">
+                <option value="deluxe">Deluxe</option>
+                <option value="standard">Standard</option>
+                <option value="penthouse">Penthouse</option>
+            </select>
 
-            <!-- Room Type Selection -->
-            <div class="form-group">
-                <label for="room-type">Room Type</label>
-                <select id="room-type" name="room-type" required>
-                    <option value="deluxe">Deluxe Suite</option>
-                    <option value="standard">Standard Room</option>
-                    <option value="penthouse">Penthouse</option>
-                </select>
-            </div>
+            <label for="checkIn">Check-in Date:</label>
+            <input type="date" id="checkIn" name="checkIn">
 
-            <!-- Check-in and Check-out Date -->
-            <div class="form-group">
-                <label for="checkin">Check-in Date</label>
-                <input type="date" id="checkin" name="checkin" required>
-            </div>
+            <label for="checkOut">Check-out Date:</label>
+            <input type="date" id="checkOut" name="checkOut">
 
-            <div class="form-group">
-                <label for="checkout">Check-out Date</label>
-                <input type="date" id="checkout" name="checkout" required>
-            </div>
+            <label for="requests">Additional Requests:</label>
+            <textarea id="requests" name="requests" placeholder="Enter any special requests (optional)"></textarea>
 
-            <!-- Additional Requests -->
-            <div class="form-group">
-                <label for="requests">Additional Requests</label>
-                <textarea id="requests" name="requests" placeholder="Enter any additional requests or preferences"></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="button" class="submit-btn" onclick="submitForm()">Book Now</button>
+            <button type="submit">Book Now</button>
         </form>
     </div>
 
     <script>
-        // Hotel Booking form submission
-        function submitForm() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const roomType = document.getElementById('room-type').value;
-            const checkin = document.getElementById('checkin').value;
-            const checkout = document.getElementById('checkout').value;
-            const requests = document.getElementById('requests').value;
+        function validateBookingForm() {
+            let fullName = document.getElementById("fullName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let roomType = document.getElementById("roomType").value;
+            let checkIn = document.getElementById("checkIn").value;
+            let checkOut = document.getElementById("checkOut").value;
+            let requests = document.getElementById("requests").value.trim();
 
-            // Store the data in localStorage
-            const bookingData = {
-                name,
-                email,
-                phone,
-                roomType,
-                checkin,
-                checkout,
-                requests
-            };
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let phonePattern = /^\d{10}$/;
+            let namePattern = /^[A-Za-z\s]+$/; // Allows only letters and spaces
 
-            // Save to localStorage (convert to JSON format)
-            localStorage.setItem('bookingData', JSON.stringify(bookingData));
+            if (fullName === "") {
+                alert("Please enter your name.");
+                return false;
+            }
+            if (!namePattern.test(fullName)) {
+                alert("Name should only contain letters and spaces.");
+                return false;
+            }
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+            if (checkIn === "" || checkOut === "") {
+                alert("Please select check-in and check-out dates.");
+                return false;
+            }
+            if (new Date(checkIn) >= new Date(checkOut)) {
+                alert("Check-out date must be later than check-in date.");
+                return false;
+            }
+            if (requests.length > 500) {
+                alert("Additional requests should not exceed 500 characters.");
+                return false;
+            }
 
-            // Confirmation message
-            alert("Your booking has been successfully made!");
-            // Optionally, redirect to a confirmation page or clear the form.
-            document.getElementById('bookingForm').reset();
+            alert("Booking successful!\nRoom Type: " + roomType);
+            return true;
         }
     </script>
 
